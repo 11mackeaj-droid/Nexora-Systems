@@ -25,7 +25,7 @@ export const apps = [
     label: "3D Print System",
     description:
       "A project, filament, maintenance, and printer tracking companion for makers.",
-    status: "Live",
+    status: "In Development",
     url: "https://hex-forge.vercel.app/",
     icon: "/apps/hexforge.png",
   },
