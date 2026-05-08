@@ -129,6 +129,54 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="border-t border-zinc-900 bg-[#07090c] px-4 py-16 sm:px-6">
+        <div className="mx-auto max-w-4xl rounded-3xl border border-zinc-800 bg-zinc-950/70 p-6 shadow-2xl shadow-black/20 sm:p-8">
+          <div className="mb-6">
+            <p className="text-xs font-medium uppercase tracking-[0.28em] text-orange-400 sm:text-sm">
+              Install As An App
+            </p>
+
+            <h3 className="mt-3 text-2xl font-bold sm:text-3xl">
+              Add Nexora apps to your home screen
+            </h3>
+
+            <p className="mt-4 text-sm leading-7 text-zinc-400 sm:text-base">
+              Nexora Systems apps are built as Progressive Web Apps, allowing
+              them to install and run like normal apps on phones, tablets, and
+              desktops.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div className="rounded-2xl border border-zinc-800 bg-black/30 p-5 sm:p-6">
+              <h4 className="mb-3 text-lg font-semibold text-white">
+                iPhone / iPad
+              </h4>
+
+              <ol className="space-y-3 text-sm leading-6 text-zinc-400">
+                <li>1. Open the app in Safari</li>
+                <li>2. Tap the Share button</li>
+                <li>3. Select Add to Home Screen</li>
+                <li>4. Launch it like a normal app</li>
+              </ol>
+            </div>
+
+            <div className="rounded-2xl border border-zinc-800 bg-black/30 p-5 sm:p-6">
+              <h4 className="mb-3 text-lg font-semibold text-white">
+                Android / Desktop
+              </h4>
+
+              <ol className="space-y-3 text-sm leading-6 text-zinc-400">
+                <li>1. Open the app in Chrome or Edge</li>
+                <li>2. Tap the Install or Menu button</li>
+                <li>3. Select Install App</li>
+                <li>4. Launch directly from your device</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <footer className="border-t border-zinc-900 bg-[#07090c] px-4 py-8 sm:px-6">
         <div className="mx-auto flex max-w-6xl flex-col justify-between gap-4 text-sm text-zinc-500 sm:flex-row">
           <p>© 2026 Nexora Systems</p>
