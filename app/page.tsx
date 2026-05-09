@@ -1,5 +1,79 @@
 import { apps } from "@/data/apps";
 
+const utilities = apps.filter((app) => app.category === "Utilities");
+const games = apps.filter((app) => app.category === "Games & Companions");
+
+function AppCard({ app }: { app: (typeof apps)[number] }) {
+  return (
+    <div className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5 shadow-2xl shadow-black/20 transition hover:border-orange-500/40 sm:p-6">
+      <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+        <span className="rounded-full bg-orange-500/10 px-3 py-1 text-xs font-medium text-orange-300">
+          {app.label}
+        </span>
+
+        <span className="text-xs text-zinc-500">{app.status}</span>
+      </div>
+
+      <div className="flex items-center gap-4">
+        <img
+          src={app.icon}
+          alt={`${app.name} logo`}
+          className="h-14 w-14 rounded-2xl border border-zinc-800 bg-zinc-900 object-cover"
+        />
+
+        <div>
+          <h4 className="text-xl font-semibold sm:text-2xl">{app.name}</h4>
+          <p className="text-xs text-zinc-500">{app.label}</p>
+        </div>
+      </div>
+
+      <p className="mt-4 min-h-20 text-sm leading-6 text-zinc-400 sm:min-h-24">
+        {app.description}
+      </p>
+
+      <a
+        href={app.url}
+        className={`mt-6 block w-full rounded-xl py-3 text-center text-sm font-medium transition ${
+          app.url === "#"
+            ? "cursor-default border border-zinc-800 text-zinc-300"
+            : "bg-orange-500 text-black hover:bg-orange-400"
+        }`}
+      >
+        {app.url === "#" ? app.status : "Launch App"}
+      </a>
+    </div>
+  );
+}
+
+function AppSection({
+  title,
+  subtitle,
+  items,
+}: {
+  title: string;
+  subtitle: string;
+  items: typeof apps;
+}) {
+  if (items.length === 0) return null;
+
+  return (
+    <div className="mt-12">
+      <div className="mb-6">
+        <h4 className="text-2xl font-bold text-white">{title}</h4>
+        <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-400">
+          {subtitle}
+        </p>
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {items.map((app) => (
+          <AppCard key={app.slug} app={app} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-[#07090c] text-white">
@@ -41,8 +115,9 @@ export default function Home() {
             </h2>
 
             <p className="mt-6 max-w-2xl text-base leading-7 text-zinc-400 sm:text-lg sm:leading-8">
-              Nexora Systems builds focused, installable web apps designed to
-              solve real problems without bloated accounts, clutter, or noise.
+              Nexora Systems creates focused digital tools and installable apps
+              built to solve real-world problems with speed, simplicity, and
+              precision.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -51,6 +126,15 @@ export default function Home() {
                 className="rounded-full bg-orange-500 px-6 py-3 text-center text-sm font-semibold text-black transition hover:bg-orange-400"
               >
                 Explore Projects
+              </a>
+
+              <a
+                href="https://discord.gg/zBDzjAd5a4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-zinc-700 px-6 py-3 text-center text-sm font-semibold text-zinc-300 transition hover:border-orange-500/60 hover:text-orange-300"
+              >
+                Join Discord
               </a>
 
               <a
@@ -69,7 +153,7 @@ export default function Home() {
         className="border-t border-zinc-900 bg-[#0b0e13] px-4 py-16 sm:px-6 sm:py-20"
       >
         <div className="mx-auto max-w-6xl">
-          <div className="mb-10">
+          <div className="mb-2">
             <p className="text-xs font-medium uppercase tracking-[0.28em] text-orange-400 sm:text-sm sm:tracking-[0.3em]">
               Current Systems
             </p>
@@ -79,53 +163,17 @@ export default function Home() {
             </h3>
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {apps.map((app) => (
-              <div
-                key={app.slug}
-                className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5 shadow-2xl shadow-black/20 transition hover:border-orange-500/40 sm:p-6"
-              >
-                <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-                  <span className="rounded-full bg-orange-500/10 px-3 py-1 text-xs font-medium text-orange-300">
-                    {app.label}
-                  </span>
+          <AppSection
+            title="Utilities"
+            subtitle="Practical tools for security, planning, fabrication, workflows, and everyday problem solving."
+            items={utilities}
+          />
 
-                  <span className="text-xs text-zinc-500">{app.status}</span>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <img
-                    src={app.icon}
-                    alt={`${app.name} logo`}
-                    className="h-14 w-14 rounded-2xl border border-zinc-800 bg-zinc-900 object-cover"
-                  />
-
-                  <div>
-                    <h4 className="text-xl font-semibold sm:text-2xl">
-                      {app.name}
-                    </h4>
-
-                    <p className="text-xs text-zinc-500">{app.label}</p>
-                  </div>
-                </div>
-
-                <p className="mt-4 min-h-20 text-sm leading-6 text-zinc-400 sm:min-h-24">
-                  {app.description}
-                </p>
-
-                <a
-                  href={app.url}
-                  className={`mt-6 block w-full rounded-xl py-3 text-center text-sm font-medium transition ${
-                    app.url === "#"
-                      ? "border border-zinc-800 text-zinc-300 hover:border-orange-500/50 hover:text-orange-300"
-                      : "bg-orange-500 text-black hover:bg-orange-400"
-                  }`}
-                >
-                  {app.url === "#" ? "Coming Soon" : "Launch App"}
-                </a>
-              </div>
-            ))}
-          </div>
+          <AppSection
+            title="Games & Companions"
+            subtitle="Game tools, companion apps, scoring systems, and experimental interactive projects."
+            items={games}
+          />
         </div>
       </section>
 
